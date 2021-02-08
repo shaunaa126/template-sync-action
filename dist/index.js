@@ -5585,10 +5585,10 @@ function run() {
                     yield mainGitCommandManager.addAll();
                     core.endGroup();
                     core.startGroup('Checking if changes exist that needs to applied');
-                    if ((yield mainGitCommandManager.status(['--porcelain'])) === '') {
-                        core.setOutput('Git status', `No changes found for ${settings.templateRepositoryUrl}`);
-                        process.exit(0); // there is currently no neutral exit code
-                    }
+                    // if ((yield mainGitCommandManager.status(['--porcelain'])) === '') {
+                    //     core.setOutput('Git status', `No changes found for ${settings.templateRepositoryUrl}`);
+                    //     process.exit(0); // there is currently no neutral exit code
+                    // }
                     core.endGroup();
                     core.startGroup('Creating a commit');
                     yield mainGitCommandManager.commit(settings.messageHead);

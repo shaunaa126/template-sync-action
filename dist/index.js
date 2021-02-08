@@ -43862,10 +43862,10 @@ class Settings {
             templateRepositoryUrl: '',
             templateRepositoryPath: process.env['STATE_template_repository_path'] || '',
             ignoreList: [
-                '.git',
+                //'.git',
                 '.changelog',
                 '.editorconfig',
-                '.gitignore',
+                //'.gitignore',
                 'CHANGELOG.md',
                 'LICENSE.md',
                 'README.md',

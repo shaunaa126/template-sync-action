@@ -5567,7 +5567,7 @@ function run() {
                 // find all files
                 const files = filehound
                     .path(settings.templateRepositoryPath)
-                    .discard(settings.ignoreList)
+                    //.discard(settings.ignoreList)
                     .findSync();
                 core.debug(`List of found files ${util_1.inspect(files)}`);
                 for (const file of files) {
@@ -5585,10 +5585,10 @@ function run() {
                     yield mainGitCommandManager.addAll();
                     core.endGroup();
                     core.startGroup('Checking if changes exist that needs to applied');
-                    // if ((yield mainGitCommandManager.status(['--porcelain'])) === '') {
-                    //     core.setOutput('Git status', `No changes found for ${settings.templateRepositoryUrl}`);
-                    //     process.exit(0); // there is currently no neutral exit code
-                    // }
+                    if ((yield mainGitCommandManager.status(['--porcelain'])) === '') {
+                        core.setOutput('Git status', `No changes found for ${settings.templateRepositoryUrl}`);
+                        process.exit(0); // there is currently no neutral exit code
+                    }
                     core.endGroup();
                     core.startGroup('Creating a commit');
                     yield mainGitCommandManager.commit(settings.messageHead);
@@ -43857,7 +43857,7 @@ class Settings {
             messageBody: core.getInput('pr_message') || message,
             ref: core.getInput('ref', { required: true }),
             syncBranchName: 'feature/template/sync/{0}',
-            templateRepositoryRef: core.getInput('template_ref') || 'refs/heads/master',
+            templateRepositoryRef: core.getInput('template_ref') || 'refs/heads/main',
             templateRepository: '',
             templateRepositoryUrl: '',
             templateRepositoryPath: process.env['STATE_template_repository_path'] || '',
